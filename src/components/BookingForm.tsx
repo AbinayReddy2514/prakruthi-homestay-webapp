@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -32,6 +32,7 @@ import { cn } from '@/lib/utils';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { supabase } from '@/integrations/supabase/client';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
@@ -54,13 +55,37 @@ const BookingForm = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log('Booking submitted:', values);
-    toast({
-      title: 'Booking Request Submitted',
-      description: 'We will contact you shortly to confirm your booking.',
-    });
-    form.reset();
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const { data, error } = await supabase
+        .from('bookings')
+        .insert([
+          {
+            name: values.name,
+            phone: values.phone,
+            check_in: values.checkIn.toISOString().split('T')[0],
+            check_out: values.checkOut.toISOString().split('T')[0],
+            rooms: values.rooms,
+            guests: values.guests,
+            status: 'pending'
+          }
+        ]);
+        
+      if (error) throw error;
+      
+      toast({
+        title: 'Booking Request Submitted',
+        description: 'We will contact you shortly to confirm your booking.',
+      });
+      form.reset();
+    } catch (error) {
+      console.error('Error submitting booking:', error);
+      toast({
+        title: 'Booking Request Failed',
+        description: 'There was an error submitting your booking. Please try again.',
+        variant: 'destructive',
+      });
+    }
   };
 
   return (

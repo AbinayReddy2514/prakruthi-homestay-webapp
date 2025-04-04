@@ -90,6 +90,12 @@ const Navbar = () => {
         >
           Contact
         </a>
+        <Link 
+          to="/admin" 
+          className="text-black px-4 py-3 block hover:bg-white md:inline-block"
+        >
+          Admin
+        </Link>
       </div>
       
       <button 
