@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Home, Wifi, ParkingSquare, Shield, Hotel, Playground, Racquet, Droplet } from 'lucide-react';
+import { Home, Wifi, ParkingSquare, Shield, Hotel, Dumbbell, Tennis, Droplet } from 'lucide-react';
 
 const FacilitiesSection = () => {
   return (
@@ -15,12 +15,12 @@ const FacilitiesSection = () => {
           </li>
           
           <li className="flex items-start gap-3">
-            <Playground className="h-6 w-6 text-prakruthi-darkGreen flex-shrink-0 mt-1" />
+            <Dumbbell className="h-6 w-6 text-prakruthi-darkGreen flex-shrink-0 mt-1" />
             <span>Children's <span className="highlight2">play area</span>.</span>
           </li>
           
           <li className="flex items-start gap-3">
-            <Racquet className="h-6 w-6 text-prakruthi-darkGreen flex-shrink-0 mt-1" />
+            <Tennis className="h-6 w-6 text-prakruthi-darkGreen flex-shrink-0 mt-1" />
             <span>Outdoor <span className="highlight2">badminton court</span> & lawn.</span>
           </li>
           
@@ -40,7 +40,7 @@ const FacilitiesSection = () => {
           </li>
           
           <li className="flex items-start gap-3">
-            <ParkingSquare className="h-6 w-6 text-prakruthi-darkGreen flex-shrink-0 mt-1" />
+            <Wifi className="h-6 w-6 text-prakruthi-darkGreen flex-shrink-0 mt-1" />
             <span>Free parking & <span className="highlight2">Wi-Fi</span>.</span>
           </li>
         </ul>
