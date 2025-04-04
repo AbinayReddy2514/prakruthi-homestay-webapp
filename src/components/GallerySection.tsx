@@ -1,96 +1,125 @@
 
-import React from 'react';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import React, { useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
-// Mock image data - these would be replaced with actual images
-const images = [
-  {
-    id: 1,
-    url: "https://images.unsplash.com/photo-1582562124811-c09040d0a901",
-    alt: "Living Room",
-  },
-  {
-    id: 2,
-    url: "https://images.unsplash.com/photo-1472396961693-142e6e269027",
-    alt: "Garden",
-  },
-  {
-    id: 3,
-    url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-    alt: "Bedroom",
-  },
-  {
-    id: 4,
-    url: "https://images.unsplash.com/photo-1721322800607-8c38375eef04",
-    alt: "Dining Area",
-  },
-];
+interface CarouselProps {
+  images: string[];
+  title: string;
+}
+
+const ImageCarousel = ({ images, title }: CarouselProps) => {
+  const [current, setCurrent] = useState(0);
+  
+  const nextSlide = () => {
+    setCurrent(current === images.length - 1 ? 0 : current + 1);
+  };
+
+  const prevSlide = () => {
+    setCurrent(current === 0 ? images.length - 1 : current - 1);
+  };
+
+  return (
+    <Card className="gallery-carousel">
+      <CardContent className="p-0 relative">
+        <div className="relative overflow-hidden">
+          {images.map((image, index) => (
+            <div
+              key={index}
+              className={`transition-opacity duration-500 ease-in-out absolute inset-0 ${
+                index === current ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              }`}
+            >
+              <img src={image} alt={`${title} View ${index + 1}`} className="carousel-image" />
+            </div>
+          ))}
+        </div>
+        
+        <Button
+          variant="outline"
+          size="icon"
+          className="absolute top-1/2 left-2 z-20 transform -translate-y-1/2 bg-white/80 hover:bg-white"
+          onClick={prevSlide}
+        >
+          <ChevronLeft className="h-6 w-6" />
+        </Button>
+        
+        <Button
+          variant="outline" 
+          size="icon"
+          className="absolute top-1/2 right-2 z-20 transform -translate-y-1/2 bg-white/80 hover:bg-white"
+          onClick={nextSlide}
+        >
+          <ChevronRight className="h-6 w-6" />
+        </Button>
+        
+        <div className="absolute bottom-2 left-0 right-0 z-20 flex justify-center gap-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              className={`w-2 h-2 rounded-full ${
+                index === current ? 'bg-white' : 'bg-white/50'
+              }`}
+              onClick={() => setCurrent(index)}
+            />
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
 
 const GallerySection = () => {
+  const homeImages = [
+    '/images/outlook.jpg',
+    '/images/bedroom.jpg',
+    '/images/tvroom.jpg'
+  ];
+  
+  const livingImages = [
+    '/images/dining.jpg',
+    '/images/garden.jpg',
+    '/images/bedroom2.jpg'
+  ];
+  
+  const bathroomImages = [
+    '/images/living room.jpg',
+    '/images/kitchen.jpg',
+    '/images/washroom.jpg'
+  ];
+  
+  const exteriorImages = [
+    '/images/living2.jpg',
+    '/images/entrance.jpg',
+    '/images/play area.jpg'
+  ];
+  
+  const amenitiesImages = [
+    '/images/swing.jpg',
+    '/images/living3.jpg',
+    '/images/bedroom3.jpg'
+  ];
+  
   return (
-    <section id="gallery" className="bg-prakruthi-gray animate-fade-in">
+    <section id="gallery" className="bg-prakruthi-lightGray animate-fade-in">
       <div className="container">
-        <h2 className="text-3xl font-bold mb-8">Gallery</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center">Gallery</h2>
         
-        <div className="mb-8">
-          <Carousel className="w-full">
-            <CarouselContent>
-              {images.map((image) => (
-                <CarouselItem key={image.id}>
-                  <Card>
-                    <CardContent className="p-0">
-                      <img 
-                        src={image.url} 
-                        alt={image.alt} 
-                        className="w-full h-[300px] md:h-[500px] object-cover rounded-md"
-                      />
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-2" />
-            <CarouselNext className="right-2" />
-          </Carousel>
-        </div>
-        
-        <div className="mb-8">
-          <Carousel className="w-full">
-            <CarouselContent>
-              {[...images].reverse().map((image) => (
-                <CarouselItem key={image.id + 10}>
-                  <Card>
-                    <CardContent className="p-0">
-                      <img 
-                        src={image.url} 
-                        alt={image.alt} 
-                        className="w-full h-[300px] md:h-[500px] object-cover rounded-md"
-                      />
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-2" />
-            <CarouselNext className="right-2" />
-          </Carousel>
-        </div>
-        
-        <div className="relative w-full overflow-hidden rounded-lg shadow-lg pt-[56.25%]">
-          <iframe
-            className="absolute top-0 left-0 w-full h-full"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=1"
-            title="Prakruthi Home Stay Video Tour"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+        <div className="space-y-8">
+          <ImageCarousel images={homeImages} title="Home Views" />
+          <ImageCarousel images={livingImages} title="Living Spaces" />
+          
+          <div className="video-container">
+            <video className="w-full h-auto" controls>
+              <source src="/videos/videoh.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          
+          <ImageCarousel images={bathroomImages} title="Kitchen and Bathroom" />
+          <ImageCarousel images={exteriorImages} title="Exterior" />
+          <ImageCarousel images={amenitiesImages} title="Amenities" />
         </div>
       </div>
     </section>

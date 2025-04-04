@@ -12,15 +12,18 @@ const HomeSection = () => {
           <span className="highlight">Experience a</span> <span className="highlight2">Relaxing Stay</span> <span className="highlight">Surrounded by Nature</span>
         </p>
         
-        {/* Using a placeholder video since we don't have the actual video */}
-        <div className="relative w-full overflow-hidden rounded-lg shadow-lg pt-[56.25%]">
-          <iframe
-            className="absolute top-0 left-0 w-full h-full"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ"
-            title="Prakruthi Home Stay"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+        <div className="relative w-full overflow-hidden rounded-lg shadow-lg">
+          <video 
+            className="w-full h-auto" 
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            controls
+          >
+            <source src="/videos/videoh2.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </section>

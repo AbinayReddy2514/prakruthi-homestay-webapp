@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -119,5 +118,35 @@
 
   video {
     @apply w-full h-auto object-cover rounded-lg shadow-md;
+  }
+}
+
+@layer components {
+  .facility-item {
+    @apply flex items-start gap-3 mb-4;
+  }
+  
+  .facility-icon {
+    @apply h-6 w-6 text-prakruthi-darkGreen flex-shrink-0 mt-1;
+  }
+  
+  .rule-item {
+    @apply flex items-start gap-3 mb-4 leading-relaxed;
+  }
+  
+  .rule-icon {
+    @apply h-6 w-6 text-prakruthi-darkRed flex-shrink-0 mt-1;
+  }
+  
+  .gallery-carousel {
+    @apply mb-8 overflow-hidden rounded-lg shadow-md;
+  }
+  
+  .carousel-image {
+    @apply w-full h-auto aspect-video object-cover;
+  }
+  
+  .video-container {
+    @apply mt-8 mb-8 w-full overflow-hidden rounded-lg shadow-md;
   }
 }

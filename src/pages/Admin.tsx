@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import type { Database } from '@/integrations/supabase/types';
 
 const Admin = () => {
   const [username, setUsername] = useState('');
@@ -41,9 +42,6 @@ const Admin = () => {
 
       // Store admin session
       localStorage.setItem('adminUsername', username);
-      
-      // Set Supabase RLS configuration
-      await supabase.rpc('set_app_admin_username', { username });
       
       toast({
         title: 'Login Successful',

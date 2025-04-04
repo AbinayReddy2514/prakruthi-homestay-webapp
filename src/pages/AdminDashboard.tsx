@@ -20,6 +20,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { format } from 'date-fns';
+import type { Database } from '@/integrations/supabase/types';
 
 type Booking = {
   id: string;

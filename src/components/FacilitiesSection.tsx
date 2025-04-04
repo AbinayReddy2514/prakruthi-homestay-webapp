@@ -6,44 +6,44 @@ const FacilitiesSection = () => {
   return (
     <section id="facilities" className="bg-prakruthi-lightGray animate-fade-in">
       <div className="container">
-        <h2 className="text-3xl font-bold mb-8">Facilities</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center">Facilities</h2>
         
-        <ul className="space-y-4 max-w-3xl mx-auto">
-          <li className="flex items-start gap-3">
-            <Home className="h-6 w-6 text-prakruthi-darkGreen flex-shrink-0 mt-1" />
+        <div className="space-y-4 max-w-3xl mx-auto">
+          <div className="facility-item">
+            <Home className="facility-icon" />
             <span><span className="highlight2">2-bedroom A/C</span>, hall, dining, kitchen, and 3 washrooms.</span>
-          </li>
+          </div>
           
-          <li className="flex items-start gap-3">
-            <Dumbbell className="h-6 w-6 text-prakruthi-darkGreen flex-shrink-0 mt-1" />
+          <div className="facility-item">
+            <Dumbbell className="facility-icon" />
             <span>Children's <span className="highlight2">play area</span>.</span>
-          </li>
+          </div>
           
-          <li className="flex items-start gap-3">
-            <Activity className="h-6 w-6 text-prakruthi-darkGreen flex-shrink-0 mt-1" />
+          <div className="facility-item">
+            <Activity className="facility-icon" />
             <span>Outdoor <span className="highlight2">badminton court</span> & lawn.</span>
-          </li>
+          </div>
           
-          <li className="flex items-start gap-3">
-            <Droplet className="h-6 w-6 text-prakruthi-darkGreen flex-shrink-0 mt-1" />
+          <div className="facility-item">
+            <Droplet className="facility-icon" />
             <span>Paid <span className="highlight2">swimming pool</span> & indoor/outdoor games available.</span>
-          </li>
+          </div>
           
-          <li className="flex items-start gap-3">
-            <Hotel className="h-6 w-6 text-prakruthi-darkGreen flex-shrink-0 mt-1" />
+          <div className="facility-item">
+            <Hotel className="facility-icon" />
             <span>Nearby <span className="highlight2">3-star hotel</span>.</span>
-          </li>
+          </div>
           
-          <li className="flex items-start gap-3">
-            <Shield className="h-6 w-6 text-prakruthi-darkGreen flex-shrink-0 mt-1" />
+          <div className="facility-item">
+            <Shield className="facility-icon" />
             <span><span className="highlight2">24/7 security</span>.</span>
-          </li>
+          </div>
           
-          <li className="flex items-start gap-3">
-            <Wifi className="h-6 w-6 text-prakruthi-darkGreen flex-shrink-0 mt-1" />
+          <div className="facility-item">
+            <Wifi className="facility-icon" />
             <span>Free parking & <span className="highlight2">Wi-Fi</span>.</span>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </section>
   );
